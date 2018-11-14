@@ -4,7 +4,7 @@ branches:
   only:
   - travis-ci
 
-language: c++
+language: minimal
 
 cache:
   directories:
