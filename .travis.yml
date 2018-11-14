@@ -20,3 +20,4 @@ before_install:
 
 script:
   - docker run -d -v $TRAVIS_BUILD_DIR:/build -v $HOME/dl:/build/dl -v $HOME/x86_64:/x86_64 batocera/batocera.linux-build /bin/bash -c "cd /x86_64; make -O=/build  batocera-x86_64_defconfig; time make | tee make.log"
+  - cat $HOME/x86_64/make.log
