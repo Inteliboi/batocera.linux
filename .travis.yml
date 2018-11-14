@@ -1,0 +1,20 @@
+sudo: required
+
+branches:
+  only:
+  - travis-ci
+
+language: c++
+
+cache:
+  directories:
+  - $TRAVIS_BUILD_DIR/dl
+  - $HOME/.buildroot-ccache
+
+services:
+  - docker
+
+before_install:
+- docker pull batocera/batocera.linux-build
+- docker run -d batocera/batocera.linux-build /bin/bash -c "echo $(pwd)"
+- docker ps -a
