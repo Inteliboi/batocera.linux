@@ -8,7 +8,7 @@ language: minimal
 
 cache:
   directories:
-  - $TRAVIS_BUILD_DIR/dl
+  - $HOME/dl
   - $HOME/.buildroot-ccache
 
 services:
@@ -16,5 +16,4 @@ services:
 
 before_install:
 - docker pull batocera/batocera.linux-build
-- docker run -d batocera/batocera.linux-build /bin/bash -c "echo $(pwd)"
-- docker ps -a
+- docker run -d batocera/batocera.linux-build -v $TRAVIS_BUILD_DIR:/build -v $HOME/dl:/build/dl
