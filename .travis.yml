@@ -15,5 +15,8 @@ services:
   - docker
 
 before_install:
-- docker pull batocera/batocera.linux-build
-- docker run -d batocera/batocera.linux-build -v $TRAVIS_BUILD_DIR:/build -v $HOME/dl:/build/dl
+  - docker pull batocera/batocera.linux-build
+  - mkdir $HOME/x86_64
+
+script:
+  - docker run -d batocera/batocera.linux-build -v $TRAVIS_BUILD_DIR:/build -v $HOME/dl:/build/dl -v $HOME/x86_64:/x86_64 /bin/bash -c "cd /x86_64; make -O=/build  batocera-x86_64_defconfig; time make | tee make.log"
